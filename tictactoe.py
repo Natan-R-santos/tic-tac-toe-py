@@ -1,5 +1,5 @@
 tabuleiro = [' '] * 9
-escolha = input('Escolha X ou O: ').upper()
+escolha = input('Escolha X ou O para comecar o jogo: ').upper()
 jogadordavez = escolha
 def exibir_tabuleiro():
     print(f'{tabuleiro[0]} | {tabuleiro[1]} | {tabuleiro[2]}')
@@ -11,7 +11,7 @@ def exibir_tabuleiro():
 def obter_jogada():
     while True:
         try:
-            jogada = int(jogada)
+            jogada = int(input(f'Jogador: {jogadordavez} Escolha uma Jogada: '))
         except ValueError:
             print('Apenas numeros.')
             continue
@@ -38,7 +38,7 @@ def main():
         tabuleiro[jogada] = jogadordavez
         if ganhador():
             exibir_tabuleiro()
-            print(f'{jogadordavez} Ganhou !!')
+            print(f'O jogador:{jogadordavez} Ganhou !!')
             break
         if ' ' not in tabuleiro:
             exibir_tabuleiro()
