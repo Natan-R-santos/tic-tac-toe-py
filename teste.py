@@ -41,5 +41,5 @@ def main():
             break
         else:
             print('opcao invalida')
-main(1)
+main()
 

@@ -1,12 +1,20 @@
-tabuleiro = [' '] * 9
+tamanho_tabuleiro = 3
+tabuleiro = [" "] * (tamanho * tamanho)
 escolha = input('Escolha X ou O para comecar o jogo: ').upper()
 jogadordavez = escolha
-def exibir_tabuleiro():
-    print(f'{tabuleiro[0]} | {tabuleiro[1]} | {tabuleiro[2]}')
-    print('---------')
-    print(f'{tabuleiro[3]} | {tabuleiro[4]} | {tabuleiro[5]}')
-    print('---------')
-    print(f'{tabuleiro[6]} | {tabuleiro[7]} | {tabuleiro[8]}')
+def size_boards():
+    while True:
+        try:
+            size = int(input("Digite o tamanho do tabuleiro (mínimo 3): "))
+            if size < 3:
+                print("Tamanho minimo é 3")
+                continue
+            if size > 10:
+                print("Muito grande! Escolha um valor até 10.")
+                continue
+            return size
+        except ValueError:
+            print('Digite apenas números inteiros.')
 
 def obter_jogada():
     while True:
@@ -49,8 +57,4 @@ def main():
         else:
             jogadordavez = 'O'
 main()
-
-
-
-        
         
