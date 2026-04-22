@@ -1,8 +1,7 @@
-tamanho_tabuleiro = 3
-tabuleiro = [" "] * (tamanho * tamanho)
 escolha = input('Escolha X ou O para comecar o jogo: ').upper()
 jogadordavez = escolha
-def size_boards():
+
+def tamanhoTabuleiro():
     while True:
         try:
             size = int(input("Digite o tamanho do tabuleiro (mínimo 3): "))
@@ -16,45 +15,43 @@ def size_boards():
         except ValueError:
             print('Digite apenas números inteiros.')
 
+def exibir_tabuleiro(tabuleiro,tamanho):
+    for i in range(tamanho):
+        iniciodacoisa = i * tamanho
+        finaldacoisa = iniciodacoisa + tamanho
+        linhas= tabuleiro[iniciodacoisa:finaldacoisa]
+        print()
+
 def obter_jogada():
     while True:
         try:
             jogada = int(input(f'Jogador: {jogadordavez} Escolha uma Jogada: '))
         except ValueError:
-            print('Apenas numeros.')
+            print('Entrada invalida,Apenas Numeros.')
             continue
-        if jogada < 0 or jogada > 8:
-            print('Só os numeros 0 e 8.')
+        if jogada < 0 or jogada > len(tabuleiro):
+            print(f'So numeros entre 0 e {len(tabuleiro)-1}')
             continue
         if tabuleiro[jogada] != ' ':
-            print('Casa está marcada,tente uma casa livre.')
+            print('Casa está preenchida,Tente uma casa livre.')
             continue
         return jogada
     
-def ganhador():
-    vitoria =[(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]
-    for a,b,c in vitoria:
-        if tabuleiro[a] == jogadordavez and tabuleiro[b] == jogadordavez and tabuleiro[c] == jogadordavez:
-            return True
-    return False
-
 def main():
-    global jogadordavez
+    global jogadordavez,tabuleiro 
+    tamanho = tamanhoTabuleiro()     
+    tabuleiro = [' '] * (tamanho*tamanho)
     while True:
-        exibir_tabuleiro()
-        jogada = obter_jogada()
+        exibir_tabuleiro(tabuleiro,tamanho)
+        jogada = obter_jogada() 
         tabuleiro[jogada] = jogadordavez
-        if ganhador():
-            exibir_tabuleiro()
-            print(f'O jogador:{jogadordavez} Ganhou !!')
-            break
         if ' ' not in tabuleiro:
-            exibir_tabuleiro()
-            print('Empate,Tabuleiro preenchido.')
-            break
-        if jogadordavez == 'O':
-            jogadordavez = 'X'
-        else:
+            exibir_tabuleiro(tabuleiro,tamanho)
+            print('Empate,tabuleiro completo deu Velha')
+            break  
+        if jogadordavez == 'X':
             jogadordavez = 'O'
+        else:
+            jogadordavez = 'X'
 main()
-        
+
