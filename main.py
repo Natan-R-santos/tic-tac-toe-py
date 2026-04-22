@@ -1,57 +1,78 @@
 escolha = input('Escolha X ou O para comecar o jogo: ').upper()
 jogadordavez = escolha
-
 def tamanhoTabuleiro():
     while True:
         try:
-            size = int(input("Digite o tamanho do tabuleiro (mínimo 3): "))
-            if size < 3:
-                print("Tamanho minimo é 3")
-                continue
-            if size > 10:
-                print("Muito grande! Escolha um valor até 10.")
-                continue
-            return size
+            i = int(input("Escolha um tamanho de tabuleiro: "))
         except ValueError:
-            print('Digite apenas números inteiros.')
+            print("Entrada somente numeros!")
+            continue
+        if i < 3:
+            print("Tamanho minimo é 3.")
+        else:
+            return i 
 
-def exibir_tabuleiro(tabuleiro,tamanho):
-    for i in range(tamanho):
-        iniciodacoisa = i * tamanho
-        finaldacoisa = iniciodacoisa + tamanho
-        linhas= tabuleiro[iniciodacoisa:finaldacoisa]
-        print()
+def criar_matriz(tamanho):
+    tabuleiro=[]
+    for _ in range(tamanho):
+        linha=[" "] * tamanho
+        tabuleiro.append(linha)
+    return tabuleiro
 
-def obter_jogada():
+def exibir_tabuleiro(tabuleiro):
+    tamanho=len(tabuleiro)
+    for i,linha in enumerate(tabuleiro):
+        print(" | ".join(linha))
+        if i < tamanho - 1:  # evita linha extra no final
+            print('-' * (tamanho * 4 - 3))
+
+def obter_jogada(tabuleiro):
+    tamanho=len(tabuleiro)
     while True:
         try:
-            jogada = int(input(f'Jogador: {jogadordavez} Escolha uma Jogada: '))
+            linha=int(input(f"Jogador {jogadordavez} escolha uma linha: "))
+            coluna=int(input(f"Jogador {jogadordavez} escolha uma coluna: "))
         except ValueError:
-            print('Entrada invalida,Apenas Numeros.')
+            print("Digite somente numeros amigo.")
             continue
-        if jogada < 0 or jogada > len(tabuleiro):
-            print(f'So numeros entre 0 e {len(tabuleiro)-1}')
+        if linha < 0 or linha >= tamanho or coluna < 0 or coluna >= tamanho:
+            print(f"Valores devem estar 0 e {tamanho-1}")
             continue
-        if tabuleiro[jogada] != ' ':
-            print('Casa está preenchida,Tente uma casa livre.')
+        if tabuleiro[linha][coluna] != " ":
+            print("casa ocupada,tente outra livre.")
             continue
-        return jogada
-    
-def main():
-    global jogadordavez,tabuleiro 
-    tamanho = tamanhoTabuleiro()     
-    tabuleiro = [' '] * (tamanho*tamanho)
-    while True:
-        exibir_tabuleiro(tabuleiro,tamanho)
-        jogada = obter_jogada() 
-        tabuleiro[jogada] = jogadordavez
-        if ' ' not in tabuleiro:
-            exibir_tabuleiro(tabuleiro,tamanho)
-            print('Empate,tabuleiro completo deu Velha')
-            break  
-        if jogadordavez == 'X':
-            jogadordavez = 'O'
-        else:
-            jogadordavez = 'X'
-main()
+        return linha,coluna
 
+def verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
+    tamanho=len(tabuleiro)
+
+    if all(tabuleiro[linha][coluna]==jogadordavez for coluna in range(tamanho)):
+        return True
+    if all(tabuleiro[linha][coluna]==jogadordavez for linha in range(tamanho)):
+        return True
+    if linha==coluna:
+        if all(tabuleiro[i][i]==jogadordavez for i in range(tamanho)):
+            return True
+    return False
+
+def main():
+    global jogadordavez
+    tamanho= tamanhoTabuleiro()
+    tabuleiro = criar_matriz(tamanho)
+    while True:
+        exibir_tabuleiro(tabuleiro)
+        linha,coluna=obter_jogada(tabuleiro)
+        tabuleiro[linha][coluna]=jogadordavez
+        if verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
+            print(f"Jogador {jogadordavez} venceu !!")
+            exibir_tabuleiro(tabuleiro)
+            break
+        if all(" " not in linha for linha in tabuleiro):
+            print("Empate ninguem ganhou")
+            exibir_tabuleiro(tabuleiro)
+            break
+        if jogadordavez == "X":
+            jogadordavez="O"
+        else:
+            jogadordavez="X"
+main()
