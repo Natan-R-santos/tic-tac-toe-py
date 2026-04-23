@@ -66,7 +66,7 @@ def main():
         if verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
             print(f"Jogador {jogadordavez} venceu !!")
             exibir_tabuleiro(tabuleiro)
-            print("Created by Natan Rcs")
+            print("Desafiado por @WillianAntunes e desenvolvido por @NatanRcs")
             break
         if all(" " not in linha for linha in tabuleiro):
             print("Empate ninguem ganhou")
