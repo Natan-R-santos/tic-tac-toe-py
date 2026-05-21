@@ -1,20 +1,93 @@
-<<<<<<< HEAD
-Com foco em aprendizado e evolucao,to metendo o biruta num desafio que se chama tic-tac-toe.
-#criar um jogo da velha e aprimorar o sistema até ficar bruto
-#algumas task já foram alcancadas e outras nao.
-#to versionando para eu ver a evolucao da coisa.
-#a prática me levará a perfeicao da coisa.
-#implemantacao tamanho do tabuleiro no tic-tac-toe,escolher o board o normal é 3x3
-=======
-este repo é um desafio proposto em aprendizado e acima de tudo meter o biruta usando o versionamento de codigo.
-antes era um jogo da velha normal tamanho 3 por 3 e de tantos desafios propostos criei um jogo dinamico só que nao paramos por ai. fui desafiado novamente e o desafio é:
-# Coisas para fazer:
-# 1. Montar tabuleiro dinâmico em função do que o usuário desejar. Validação: Tamanho mínimo deve ser 3
-# 2. Deixar jogar escolher símbolo (X ou O)
-# 3. Garantir que usuário informe somente números
-# 4. Validar jogadas do usuário
-# 5. Fazer movimento do adversário automaticamente 
-# 6. Verificar ganhador usando lógica que funcione independente do tamanho do tabuleiro
-# 7. Informar quando dar EMPATE
-vamos se basear nesse desafio e com o tempo iremos dificultando a linguiça toda,agora o desafio é esse para mim,vou seguir os checklist e vou marcar oque eu ja conseguir fazer,o codigo está quebrando e vamo tratar pra ficar bruto a linguica da logica hehe,desafiado por @willianantunes e programado por @natanrcs!
->>>>>>> e9eb34b (add readme novo e vamo codar...)
+# Tic-Tac-Toe Python 🎮
+
+Projeto criado com foco em **aprendizado, prática e evolução na programação**.
+
+A ideia começou simples: desenvolver um jogo da velha (`3x3`) em Python. Com o tempo, novos desafios foram surgindo e o projeto passou a evoluir para uma versão mais dinâmica e com mais validações.
+
+Este repositório também serve para acompanhar minha evolução usando **Git e versionamento de código**, entendendo como projetos crescem, quebram e melhoram ao longo do tempo.
+
+Desafiado por **@WillianAntunes** e desenvolvido por **@NatanRcs**.
+
+---
+
+## Objetivo do projeto
+
+Criar um Tic-Tac-Toe (Jogo da Velha) cada vez mais robusto, implementando melhorias progressivas.
+
+Atualmente o foco é desenvolver:
+
+- Tabuleiro dinâmico
+- Validações de entrada
+- Sistema de vitória adaptável ao tamanho
+- Inteligência artificial para adversário
+- Melhorias na lógica do jogo
+
+---
+
+## Funcionalidades implementadas ✅
+
+- [ ] Criar tabuleiro dinâmico
+- [ ] Definir tamanho mínimo do tabuleiro (`>= 3`)
+- [ ] Validar entrada numérica
+- [ ] Validar jogadas inválidas
+- [ ] Detectar empate
+- [ ] Escolha validada entre símbolo `X` ou `O`
+- [ ] Movimento automático do adversário
+- [ ] Verificação completa de vitória independente do tamanho
+
+---
+
+## Desafio atual 🚀
+
+Checklist proposto pelo desafiador:
+
+1. Montar tabuleiro dinâmico em função do que o usuário desejar  
+   - Validação: tamanho mínimo deve ser `3`
+
+2. Deixar jogador escolher símbolo (`X` ou `O`)
+
+3. Garantir que usuário informe somente números
+
+4. Validar jogadas do usuário
+
+5. Fazer movimento automático do adversário
+
+6. Verificar ganhador usando lógica independente do tamanho do tabuleiro
+
+7. Informar quando ocorrer EMPATE
+
+---
+
+## Exemplo de execução
+
+```bash
+Escolha X ou O para começar:
+X
+
+Escolha tamanho do tabuleiro:
+5
+
+Jogador X escolha linha:
+2
+
+Jogador X escolha coluna:
+3
+```
+---
+## Tecnologias utilizadas
+- Python
+- Git
+- GitHub
+---
+## Aprendizados
+Além da lógica do jogo, este projeto também está sendo usado para praticar:
+- Estrutura de código
+- Funções
+- Matrizes
+- Tratamento de erros (`try/except`)
+- Loops
+- Versionamento com Git
+- Resolução de conflitos
+- Evolução incremental de projetos
+
+> A prática constante melhora a lógica. O objetivo aqui não é só terminar o projeto, mas evoluir construindo a linguiça..!
