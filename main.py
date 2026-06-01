@@ -2,12 +2,12 @@
 def escolher_x_ou_bolinha():
     while True:
         escolha = input("Digite X ou O(Bolinha) para começar: ").upper()
-        if escolha == "X" or escolha == "O":
+        if escolha in ("X", "O"):
             return escolha
 
         print("Apenas X ou Bolinha")
 
-def tamanhoTabuleiro():
+def tamanho_tabuleiro():
     while True:
         try:
             i = int(input("Escolha um tamanho de tabuleiro: "))
@@ -20,25 +20,25 @@ def tamanhoTabuleiro():
             return i 
 
 def criar_matriz(tamanho):
-    tabuleiro=[]
+    tabuleiro = []
     for _ in range(tamanho):
-        linha=[" "] * tamanho
+        linha = [" "] * tamanho
         tabuleiro.append(linha)
     return tabuleiro
 
 def exibir_tabuleiro(tabuleiro):
-    tamanho=len(tabuleiro)
-    for i,linha in enumerate(tabuleiro):
+    tamanho = len(tabuleiro)
+    for i, linha in enumerate(tabuleiro):
         print(" | ".join(linha))
         if i < tamanho - 1:  # evita linha extra no final
             print('-' * (tamanho * 4 - 3))
 
-def obter_jogada(tabuleiro,jogadordavez):
-    tamanho=len(tabuleiro)
+def obter_jogada(tabuleiro, jogadordavez):
+    tamanho = len(tabuleiro)
     while True:
         try:
-            linha=int(input(f"Jogador {jogadordavez} escolha uma linha: "))
-            coluna=int(input(f"Jogador {jogadordavez} escolha uma coluna: "))
+            linha = int(input(f"Jogador {jogadordavez} escolha uma linha: "))
+            coluna = int(input(f"Jogador {jogadordavez} escolha uma coluna: "))
         except ValueError:
             print("Digite somente numeros amigo.")
             continue
@@ -46,40 +46,43 @@ def obter_jogada(tabuleiro,jogadordavez):
             print(f"Valores devem estar 0 e {tamanho-1}")
             continue
         if tabuleiro[linha][coluna] != " ":
-            print("casa ocupada,tente outra livre.")
+            print("Casa Ocupada, Tente outra Livre!")
             continue
-        return linha,coluna,jogadordavez
+        return linha, coluna
 
-def verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
-    tamanho=len(tabuleiro)
+def verificar_vitoria(tabuleiro, jogadordavez, linha, coluna):
+    tamanho = len(tabuleiro)
 
-    if all(tabuleiro[linha][coluna]==jogadordavez for coluna in range(tamanho)):
+    if all(tabuleiro[linha][coluna] == jogadordavez for c in range(tamanho)):
         return True
-    if all(tabuleiro[linha][coluna]==jogadordavez for linha in range(tamanho)):
+    if all(tabuleiro[linha][coluna] == jogadordavez for l in range(tamanho)):
         return True
-    if linha==coluna:
-        if all(tabuleiro[i][i]==jogadordavez for i in range(tamanho)):
+    if linha == coluna:
+        if all(tabuleiro[i][i] == jogadordavez for i in range(tamanho)):
+            return True
+    if linha + coluna == tamanho - 1:
+        if all(tabuleiro[i][tamanho - 1 - i] == jogadordavez for i in range(tamanho)):
             return True
     return False
 
 def main():
     jogadordavez = escolher_x_ou_bolinha()
-    tamanho= tamanhoTabuleiro()
+    tamanho = tamanho_tabuleiro()
     tabuleiro = criar_matriz(tamanho)
     while True:
         exibir_tabuleiro(tabuleiro)
-        linha,coluna,jogadordavez = obter_jogada(tabuleiro,jogadordavez)
-        tabuleiro[linha][coluna]=jogadordavez
-        if verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
+        linha, coluna = obter_jogada(tabuleiro, jogadordavez)
+        tabuleiro[linha][coluna] = jogadordavez
+        if verificar_vitoria(tabuleiro, jogadordavez, linha, coluna):
             print(f"Jogador {jogadordavez} venceu !!")
             exibir_tabuleiro(tabuleiro)
             break
         if all(" " not in linha for linha in tabuleiro):
-            print("Empate ninguem ganhou")
+            print("Empate! Deu Velha!")
             exibir_tabuleiro(tabuleiro)
             break
         if jogadordavez == "X":
-            jogadordavez="O"
+            jogadordavez = "O"
         else:
-            jogadordavez="X"
+            jogadordavez = "X"
 main()
