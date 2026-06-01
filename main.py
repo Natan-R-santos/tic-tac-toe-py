@@ -1,5 +1,12 @@
-escolha = input('Escolha X ou O para comecar o jogo: ').upper()
-jogadordavez = escolha
+
+def escolher_x_ou_bolinha():
+    while True:
+        escolha = input("Digite X ou O(Bolinha) para começar: ").upper()
+        if escolha == "X" or escolha == "O":
+            return escolha
+
+        print("Apenas X ou Bolinha")
+
 def tamanhoTabuleiro():
     while True:
         try:
@@ -26,7 +33,7 @@ def exibir_tabuleiro(tabuleiro):
         if i < tamanho - 1:  # evita linha extra no final
             print('-' * (tamanho * 4 - 3))
 
-def obter_jogada(tabuleiro):
+def obter_jogada(tabuleiro,jogadordavez):
     tamanho=len(tabuleiro)
     while True:
         try:
@@ -41,7 +48,7 @@ def obter_jogada(tabuleiro):
         if tabuleiro[linha][coluna] != " ":
             print("casa ocupada,tente outra livre.")
             continue
-        return linha,coluna
+        return linha,coluna,jogadordavez
 
 def verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
     tamanho=len(tabuleiro)
@@ -56,12 +63,12 @@ def verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
     return False
 
 def main():
-    global jogadordavez
+    jogadordavez = escolher_x_ou_bolinha()
     tamanho= tamanhoTabuleiro()
     tabuleiro = criar_matriz(tamanho)
     while True:
         exibir_tabuleiro(tabuleiro)
-        linha,coluna=obter_jogada(tabuleiro)
+        linha,coluna,jogadordavez = obter_jogada(tabuleiro,jogadordavez)
         tabuleiro[linha][coluna]=jogadordavez
         if verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
             print(f"Jogador {jogadordavez} venceu !!")
