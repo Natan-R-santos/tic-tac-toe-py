@@ -1,5 +1,14 @@
-escolha = input('Escolha X ou O para comecar o jogo: ').upper()
-jogadordavez = escolha
+
+def escolher_x_ou_bolinha():
+    while True:
+        escolha = input("Digite X ou O(Bolinha) para começar: ").upper()
+        if escolha == "X" or escolha == "O":
+            return escolha
+
+        print("Apenas X ou Bolinha")
+
+jogadordavez = escolher_x_ou_bolinha()
+
 def tamanhoTabuleiro():
     while True:
         try:
@@ -56,7 +65,7 @@ def verificar_vitoria(tabuleiro,jogadordavez,linha,coluna):
     return False
 
 def main():
-    global jogadordavez
+    escolher_x_ou_bolinha
     tamanho= tamanhoTabuleiro()
     tabuleiro = criar_matriz(tamanho)
     while True:
