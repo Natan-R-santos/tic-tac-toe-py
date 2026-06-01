@@ -1,4 +1,3 @@
-
 def escolher_x_ou_bolinha():
     while True:
         escolha = input("Digite X ou O(Bolinha) para começar: ").upper()

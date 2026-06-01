@@ -26,14 +26,14 @@ Atualmente o foco é desenvolver:
 
 ## Funcionalidades implementadas ✅
 
-- [ ] Criar tabuleiro dinâmico
-- [ ] Definir tamanho mínimo do tabuleiro (`>= 3`)
-- [ ] Validar entrada numérica
-- [ ] Validar jogadas inválidas
-- [ ] Detectar empate
-- [ ] Escolha validada entre símbolo `X` ou `O`
+- [x] Criar tabuleiro dinâmico
+- [x] Definir tamanho mínimo do tabuleiro (`>= 3`)
+- [x] Validar entrada numérica
+- [x] Validar jogadas inválidas
+- [x] Detectar empate
+- [x] Escolha validada entre símbolo `X` ou `O`
 - [ ] Movimento automático do adversário
-- [ ] Verificação completa de vitória independente do tamanho
+- [x] Verificação completa de vitória independente do tamanho
 
 ---
 
